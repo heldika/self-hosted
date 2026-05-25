@@ -15,8 +15,7 @@ jobs:
         
       - name: Stop and remove existing container
         run: |
-          docker compose down || true
-          docker rmi app:1 || true
+          docker-compose down --rmi all || true
         
       - name: Start container
-        run: docker compose up -d
+        run: docker-compose up -d
