@@ -1,18 +1,22 @@
 name: Deploy Image
 run-name: Deploy Image
-on:
+
+on: 
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-
+        
       - name: Stop and remove existing container
-        run: docker compose down --rmi all
-
+        run: |
+          docker compose down || true
+          docker rmi app:1 || true
+        
       - name: Start container
         run: docker compose up -d
