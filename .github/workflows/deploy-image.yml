@@ -1,6 +1,6 @@
 name: Deploy Image
 run-name: Deploy Image
-on: 
+on:
   push:
     branches:
       - main
@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-        
+
       - name: Stop and remove existing container
         run: docker compose down --rmi all
-        
+
       - name: Start container
         run: docker compose up -d
